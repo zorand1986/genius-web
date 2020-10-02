@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Box from "@material-ui/core/Box";
 
+import SignUp from '../SignUp';
+import SignIn from "../SignIn";
+
 import useStyles from './Home.styles'
 
 const Home = () => {
+  const [hasAccount, setHasAccount] = useState(false)
   const classes = useStyles();
+
+  const setHasAccountTrue = () => {
+    setHasAccount(true);
+  }
+  const setHasAccountFalse = () => {
+    setHasAccount(false);
+  }
   return (
     <Container maxWidth className={classes.mainWrapper}>
       <div className={classes.leftWrapper}>
@@ -15,9 +26,6 @@ const Home = () => {
         <Typography align="right" style={{ color: "#aaa" }} variant="h4">Simple.Customizable.Shareable.</Typography>
         <div style={{ textAlign: "center" }}>
           <Typography gutterBottom style={{ color: "#fff", marginTop: "90px" }} variant="h2">How does it work?</Typography>
-          {/*<Typography>*/}
-          {/*  It's simple. Just create account in just a few easy steps and start creating your knowledge database. When you're done, simply download our app to your phone from GooglePlay or AppStore and start your learning journey!*/}
-          {/*</Typography>*/}
           <Box mx={10} style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
             <Paper elevation={3} style={{ height: "300px", width: "100%", margin: "10px", padding: "10px" }}>
               <Typography variant="h5">Create Account</Typography>
@@ -32,10 +40,13 @@ const Home = () => {
               <Typography variant="body1">Weather you are using iphone or android-based phone, we are available on Google Play Store or App store.</Typography>
             </Paper>
           </Box>
-
         </div>
       </div>
-      <div className={classes.rightWrapper}></div>
+      <div className={classes.rightWrapper}>
+        {hasAccount 
+        ? <SignIn setHasAccountFalse={setHasAccountFalse} /> 
+        : <SignUp setHasAccountTrue={setHasAccountTrue} />}
+      </div>
     </Container>
   )
 }
