@@ -5,24 +5,24 @@ import {
   Route
 } from "react-router-dom";
 
-import Home from "../src/Components/Home"
-import About from '../src/Components/About';
-import Dashboard from '../src/Components/Dashboard';
-
-import Header from "../src/Components/Header"
+import Home from 'Components/Home';
+import About from 'Components/About';
+import Dashboard from 'Components/Dashboard';
+import Header from "Components/Header";
+import AuthContextProvider from "./Contexts/AuthContext";
 
 function App() {
   return (
-    <div>
+    <AuthContextProvider>
       <Router>
-      <Header/>
+      <Header />
         <Switch>
           <Route path="/" exact component={Home}/>
           <Route path="/about" exact component={About}/>
           <Route path="/dashboard" exact component={Dashboard}/>
         </Switch>
       </Router>
-    </div>
+    </AuthContextProvider>
   );
 }
 

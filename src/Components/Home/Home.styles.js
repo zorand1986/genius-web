@@ -1,7 +1,5 @@
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
-import commonStyles from './../../commonStyles';
-
 const useStyles = makeStyles((theme) => createStyles({
     mainWrapper: {
       width: "100vw",
@@ -17,7 +15,9 @@ const useStyles = makeStyles((theme) => createStyles({
   rightWrapper: {
     height: "100%",
     width: "100%",
-    backgroundColor: "white"
+    backgroundColor: "white",
+    display: "flex",
+    alignItems: "center",
   },
   headline: {
       color: "white"
