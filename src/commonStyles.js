@@ -4,7 +4,7 @@ const commonStyles = {
   },
 
    getTextColor() {
-    return "#fff"
+    return "#999"
   }
 }
 
