@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   Link
 } from "react-router-dom";
@@ -11,30 +11,37 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import useStyles from "./Header.styles";
 import { AuthContext } from "Contexts/AuthContext";
+import Sidebar from "Components/Sidebar";
 
 const Header = () => {
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  }
 
   const classes = useStyles();
   return (
     <div className={classes.root}>
+      <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} />
       <AppBar className={classes.barWrapper} position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          <IconButton onClick={toggleSidebar} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             Genius Flashcards
           </Typography>
-          <Link to="/">
-            <Button className={classes.linkButton}>Home</Button>
+          <Link to="/" className={classes.linkButton}>
+            <Button color="inherit">Home</Button>
           </Link>
-          <Link to="/about">
-            <Button className={classes.linkButton} color="inherit">About</Button>
+          <Link to="/about" className={classes.linkButton}>
+            <Button color="inherit" >About</Button>
           </Link>
           {isLoggedIn && (
-              <Link to="/dashboard">
-              <Button className={classes.linkButton}>Dashboard</Button>
+              <Link to="/dashboard" className={classes.linkButton}>
+              <Button color="inherit">Dashboard</Button>
             </Link>
           )}
           {isLoggedIn ? <Button color="inherit" onClick={() => setIsLoggedIn(false)}>Signout</Button> : (

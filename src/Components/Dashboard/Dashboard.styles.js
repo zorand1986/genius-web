@@ -6,7 +6,16 @@ const useStyles = makeStyles((theme) => createStyles({
 headline: {
     textTransform: "uppercase",
     color: commonStyles.getTextColor(),
-    textAlign: "center"
+    textAlign: "center",
+    marginTop: theme.spacing(8)
+},
+deckLink: {
+    textDecoration: "none",
+    color: "inherit",
+    zIndex: 1000
+},
+addRow: {
+    marginTop: theme.spacing(4)
 }
 }));
 
